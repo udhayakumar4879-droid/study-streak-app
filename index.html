@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7fb" />
+  <title>Orbit Study — Study Streak Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-view="dashboard" aria-label="Orbit Study home">
+        <span class="brand-mark"><i data-lucide="orbit"></i></span>
+        <span>Study Streak Tracker<span class="brand-dot">.</span></span>
+      </a>
+      <div class="sidebar-label">Workspace</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+        <button class="nav-item" data-view="planner"><i data-lucide="list-todo"></i><span>Study planner</span><span class="nav-badge" id="plannerBadge">0</span></button>
+        <button class="nav-item" data-view="calendar"><i data-lucide="calendar-days"></i><span>Calendar</span></button>
+        <button class="nav-item" data-view="timer"><i data-lucide="timer"></i><span>Focus timer</span></button>
+        <button class="nav-item" data-view="progress"><i data-lucide="chart-no-axes-combined"></i><span>Progress & analytics</span></button>
+      </nav>
+      <div class="sidebar-label settings-label">Personalize</div>
+      <nav class="main-nav">
+        <button class="nav-item" data-view="settings"><i data-lucide="settings-2"></i><span>Settings</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-quote">
+        <i data-lucide="sparkles"></i>
+        <p id="sidebarQuote">Small steps, every day.</p>
+        <span>YOUR DAILY COMPANION</span>
+      </div>
+      <div class="profile-chip">
+        <div class="avatar">S</div>
+        <div><strong>Student</strong><small>Keep going ✦</small></div>
+        <button class="icon-button" id="collapseSidebar" aria-label="Collapse sidebar"><i data-lucide="panel-left-close"></i></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobileMenu" aria-label="Open menu"><i data-lucide="menu"></i></button>
+        <div class="breadcrumbs"><span id="pageEyebrow">OVERVIEW</span><span class="breadcrumb-separator">/</span><strong id="pageTitle">Dashboard</strong></div>
+        <div class="topbar-actions">
+          <div class="live-pill"><span class="live-dot"></span><span id="todayLabel">Today</span></div>
+          <button class="icon-button" id="themeToggle" aria-label="Toggle theme"><i data-lucide="moon"></i></button>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Enable notifications"><i data-lucide="bell"></i><span class="notification-dot"></span></button>
+          <div class="top-avatar">S</div>
+        </div>
+      </header>
+
+      <div class="page-container">
+        <section class="view active" id="dashboardView">
+          <div class="page-heading">
+            <div><p class="eyebrow" id="greeting">GOOD MORNING</p><h1>Ready to make it count?</h1><p class="muted" id="dateText"></p></div>
+            <button class="button button-primary" data-action="open-add"><i data-lucide="plus"></i> Add session</button>
+          </div>
+
+          <div class="hero-grid">
+            <article class="hero-card card">
+              <div class="hero-copy"><span class="status-label"><span class="status-dot"></span> Daily momentum</span><h2>Build your <em>orbit.</em></h2><p>Consistency compounds. You’re closer than you think.</p><button class="button button-light" data-action="start-timer"><i data-lucide="play"></i> Start focusing</button></div>
+              <div class="hero-orbit"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core"><strong id="heroStreak">0</strong><span>day streak</span></div><i data-lucide="sparkle" class="orbit-sparkle"></i></div>
+            </article>
+            <article class="card progress-card"><div class="card-topline"><span>Today’s progress</span><button class="more-button" aria-label="More options"><i data-lucide="ellipsis"></i></button></div><div class="progress-content"><div class="progress-ring" id="progressRing"><div><strong id="progressPercent">0%</strong><span>complete</span></div></div><div class="progress-details"><strong><span id="todayMinutes">0</span> <small>/ <span id="goalHours">2</span>h</small></strong><p id="progressMessage">Ready when you are.</p><div class="mini-progress"><span id="progressBar"></span></div></div></div><div class="progress-footer"><span><i data-lucide="clock-3"></i> <b id="sessionCountToday">0</b> sessions today</span><span class="accent-text" id="goalLabel">Goal: 2h</span></div></article>
+          </div>
+
+          <div class="stats-grid">
+            <article class="metric-card card"><div class="metric-icon purple"><i data-lucide="flame"></i></div><div><span>Current streak</span><strong><span id="currentStreak">0</span><small> days</small></strong><p class="trend neutral" id="streakHint">Start your streak today</p></div></article>
+            <article class="metric-card card"><div class="metric-icon orange"><i data-lucide="trophy"></i></div><div><span>Longest streak</span><strong><span id="longestStreak">0</span><small> days</small></strong><p class="trend positive"><i data-lucide="trending-up"></i> Personal best</p></div></article>
+            <article class="metric-card card"><div class="metric-icon teal"><i data-lucide="hourglass"></i></div><div><span>Total study time</span><strong id="totalHours">0h 0m</strong><p class="trend positive"><i data-lucide="arrow-up-right"></i> Keep building</p></div></article>
+            <article class="metric-card card"><div class="metric-icon blue"><i data-lucide="target"></i></div><div><span>Monthly completion</span><strong><span id="monthCompletion">0</span><small>%</small></strong><p class="trend neutral" id="monthDays">0 completed days</p></div></article>
+          </div>
+
+          <div class="content-grid">
+            <article class="card chart-card"><div class="card-heading"><div><span class="eyebrow">THIS WEEK</span><h3>Study activity</h3></div><select id="chartRange" class="select-small"><option value="week">This week</option><option value="last">Last 7 days</option></select></div><div class="bar-chart" id="weeklyChart"><div class="chart-grid-lines"><i></i><i></i><i></i><i></i></div></div></article>
+            <article class="card upcoming-card"><div class="card-heading"><div><span class="eyebrow">UP NEXT</span><h3>Today’s plan</h3></div><button class="text-button" data-view="planner">View all <i data-lucide="arrow-up-right"></i></button></div><div id="todaySessions" class="session-list"></div></article>
+          </div>
+        </section>
+
+        <section class="view" id="plannerView"><div class="page-heading"><div><p class="eyebrow">PLAN WITH INTENTION</p><h1>Study planner</h1><p class="muted">Shape your time, then protect it.</p></div><button class="button button-primary" data-action="open-add"><i data-lucide="plus"></i> New session</button></div><div class="planner-layout"><article class="card goal-card"><div class="goal-header"><div class="metric-icon purple"><i data-lucide="target"></i></div><div><span>Daily study goal</span><h2 id="plannerGoal">2 hours</h2></div><button class="icon-button" data-action="edit-goal" aria-label="Edit daily goal"><i data-lucide="pencil"></i></button></div><div class="goal-track"><span id="plannerGoalTrack"></span></div><p id="plannerGoalCopy">A little focus every day adds up.</p><div class="goal-presets"><button data-goal="1">1h</button><button data-goal="2" class="selected">2h</button><button data-goal="4">4h</button><button data-goal="6">6h</button></div></article><article class="card planner-list-card"><div class="card-heading"><div><span class="eyebrow">ALL SESSIONS</span><h3>Your study queue</h3></div><div class="filter-tabs"><button class="active" data-filter="all">All</button><button data-filter="upcoming">Upcoming</button><button data-filter="completed">Completed</button></div></div><div id="allSessions" class="full-session-list"></div></article></div></section>
+
+        <section class="view" id="calendarView"><div class="page-heading"><div><p class="eyebrow">SEE THE PATTERN</p><h1>Your calendar</h1><p class="muted">Every completed day is a vote for your future self.</p></div><button class="button button-primary" data-action="open-add"><i data-lucide="plus"></i> Add session</button></div><div class="calendar-layout"><article class="card calendar-card"><div class="calendar-header"><button class="icon-button" id="prevMonth" aria-label="Previous month"><i data-lucide="chevron-left"></i></button><h2 id="calendarMonth">Month</h2><button class="icon-button" id="nextMonth" aria-label="Next month"><i data-lucide="chevron-right"></i></button></div><div class="weekday-row" id="weekdayRow"></div><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-legend"><span><i class="legend-dot completed"></i> Goal met</span><span><i class="legend-dot partial"></i> In progress</span><span><i class="legend-dot today"></i> Today</span></div></article><article class="card selected-day-card"><div class="card-heading"><div><span class="eyebrow">SELECTED DAY</span><h3 id="selectedDateTitle">Today</h3></div><button class="text-button" data-action="open-add"><i data-lucide="plus"></i> Add</button></div><div class="selected-day-total"><strong id="selectedDayMinutes">0m</strong><span>focused</span></div><div id="selectedDaySessions" class="session-list"></div></article></div></section>
+
+        <section class="view" id="timerView"><div class="page-heading"><div><p class="eyebrow">DEEP WORK MODE</p><h1>Focus timer</h1><p class="muted">One clear intention. A little less noise.</p></div><span class="timer-status-pill" id="timerStatus">READY TO FOCUS</span></div><div class="timer-layout"><article class="card timer-card"><div class="timer-mode-tabs"><button class="active" data-timer-mode="focus">Focus</button><button data-timer-mode="pomodoro">Pomodoro</button></div><div class="timer-display"><div class="timer-circle"><div><span id="timerLabel">25:00</span><small id="timerSubLabel">FOCUS TIME</small></div></div></div><div class="preset-row"><button data-duration="15">15m</button><button data-duration="25" class="selected">25m</button><button data-duration="45">45m</button><button data-duration="60">60m</button><button data-duration="90">90m</button></div><div class="timer-actions"><button class="button button-primary large" id="timerStart"><i data-lucide="play"></i> Start timer</button><button class="button button-secondary large" id="timerReset"><i data-lucide="rotate-ccw"></i> Reset</button></div><p class="timer-note"><i data-lucide="info"></i> Your focus time is only added when the timer completes.</p></article><article class="card intention-card"><div class="card-heading"><div><span class="eyebrow">SET AN INTENTION</span><h3>What are you working on?</h3></div><i data-lucide="feather" class="muted-icon"></i></div><textarea id="timerNote" placeholder="e.g. Review chapter 4 notes..." rows="3"></textarea><div class="timer-side-stat"><span><i data-lucide="zap"></i> Sessions completed</span><strong id="timerSessions">0</strong></div><div class="timer-side-stat"><span><i data-lucide="calendar-check"></i> Today’s focus</span><strong id="timerTodayFocus">0m</strong></div><div class="quote-box"><i data-lucide="quote"></i><p id="timerQuote">The secret of getting ahead is getting started.</p></div></article></div></section>
+
+        <section class="view" id="progressView"><div class="page-heading"><div><p class="eyebrow">YOUR TRAJECTORY</p><h1>Progress & analytics</h1><p class="muted">Look back to move forward with clarity.</p></div><button class="button button-secondary" id="exportCsv"><i data-lucide="download"></i> Export CSV</button></div><div class="analytics-stats"><article class="card"><span>Total focus time</span><strong id="analyticsTotal">0h 0m</strong><small>All completed sessions</small></article><article class="card"><span>Completion rate</span><strong id="analyticsRate">0%</strong><small>Days you met your goal</small></article><article class="card"><span>Best day</span><strong id="analyticsBest">—</strong><small id="analyticsBestTime">No data yet</small></article><article class="card"><span>Sessions completed</span><strong id="analyticsSessions">0</strong><small>Keep the rhythm going</small></article></div><div class="analytics-grid"><article class="card chart-card large-chart"><div class="card-heading"><div><span class="eyebrow">LAST 7 DAYS</span><h3>Focus minutes</h3></div></div><div class="bar-chart analytics-bars" id="analyticsChart"><div class="chart-grid-lines"><i></i><i></i><i></i><i></i></div></div></article><article class="card subject-card"><div class="card-heading"><div><span class="eyebrow">BY SUBJECT</span><h3>Where time goes</h3></div></div><div id="subjectBreakdown" class="subject-breakdown"></div></article></div></section>
+
+        <section class="view" id="settingsView"><div class="page-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h1>Settings</h1><p class="muted">Your preferences stay on this device.</p></div></div><div class="settings-grid"><article class="card settings-card"><div class="settings-section"><div class="settings-title"><i data-lucide="palette"></i><div><h3>Appearance</h3><p>Choose how Orbit feels.</p></div></div><label class="setting-row"><span>Theme</span><select id="themeSelect"><option value="light">Light mode</option><option value="dark">Dark mode</option></select></label></div><div class="settings-section"><div class="settings-title"><i data-lucide="target"></i><div><h3>Study preferences</h3><p>Set a rhythm that works for you.</p></div></div><label class="setting-row"><span>Daily study goal</span><select id="goalSelect"><option value="1">1 hour</option><option value="2">2 hours</option><option value="4">4 hours</option><option value="6">6 hours</option></select></label><label class="setting-row"><span>Default timer</span><select id="defaultTimer"><option value="15">15 minutes</option><option value="25">25 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option></select></label></div><div class="settings-section"><div class="settings-title"><i data-lucide="bell-ring"></i><div><h3>Notifications</h3><p>Helpful nudges, never noise.</p></div></div><label class="setting-row"><span>Browser reminders<label class="switch"><input type="checkbox" id="notificationsToggle"><span></span></label></span></label><label class="setting-row"><span>Sound effects<label class="switch"><input type="checkbox" id="soundToggle"><span></span></label></span></label></div></article><article class="card settings-card danger-card"><div class="settings-title"><i data-lucide="database"></i><div><h3>Your data</h3><p>Local to this browser and device.</p></div></div><div class="data-actions"><button class="button button-secondary" id="exportCsvSettings"><i data-lucide="file-down"></i> Export study history</button><button class="button button-danger" id="resetToday"><i data-lucide="eraser"></i> Reset today’s progress</button><button class="button button-danger" id="resetAll"><i data-lucide="trash-2"></i> Reset all study data</button></div><p class="privacy-note"><i data-lucide="shield-check"></i> Nothing leaves your device. Your data is saved in localStorage.</p></article></div></section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="sessionModal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><span class="eyebrow">PLAN A SESSION</span><h2 id="modalTitle">Add study session</h2></div><button class="icon-button" data-action="close-modal" aria-label="Close dialog"><i data-lucide="x"></i></button></div><form id="sessionForm"><input type="hidden" id="editingId" /><label>Subject or task<input id="subjectInput" required maxlength="80" placeholder="e.g. Biology — cell structure" /></label><div class="form-grid"><label>Date<input type="date" id="dateInput" required /></label><label>Start time<input type="time" id="startInput" required /></label></div><div class="form-grid"><label>Duration<select id="durationInput"><option value="15">15 minutes</option><option value="25">25 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="custom">Custom</option></select></label><label id="customDurationWrap" class="hidden">Minutes<input type="number" id="customDuration" min="1" max="720" value="30" /></label></div><label>Notes <span class="optional">optional</span><textarea id="notesInput" rows="3" maxlength="240" placeholder="Anything to remember?"></textarea></label><p class="form-error" id="formError"></p><div class="modal-actions"><button type="button" class="button button-secondary" data-action="close-modal">Cancel</button><button type="submit" class="button button-primary">Save session</button></div></form></div></div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
